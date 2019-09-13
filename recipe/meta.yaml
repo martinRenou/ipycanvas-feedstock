@@ -1,5 +1,5 @@
 {% set name = "ipycanvas" %}
-{% set version = "0.2.0" %}
+{% set version = "0.2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 5b4f272f26ecd9197c01b06190737e0f3e5e127d35e2a39d855c4e168227e408
+  sha256: d820f0ac0ca3b918d10c96fa81328238fe1e1f945d270b1f135ab653664e3945
 
 build:
   noarch: python
@@ -20,6 +20,7 @@ requirements:
     - pip
   run:
     - ipywidgets >=7.5.0
+    - numpy
     - python >=3.4
 
 test:
