@@ -1,5 +1,5 @@
 {% set name = "ipycanvas" %}
-{% set version = "0.4.4" %}
+{% set version = "0.4.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7e7056bc888b73b2481efa410d2c46577b243c4c6cf45cbf02af8465c72de665
+  sha256: 98a2e56c781570588400b298ca61ed85b3b32a0f6b0c3cb33b63c747d1830564
 
 build:
   noarch: python
@@ -16,18 +16,25 @@ build:
 
 requirements:
   host:
-    - python >=3.5
+    - python
     - pip
     - nodejs
   run:
     - ipywidgets >=7.5.0
     - numpy
     - pillow >=6.0
-    - python >=3.5
+    - python
 
 test:
   imports:
     - ipycanvas
+  commands:
+    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/extension.js                                     # [unix]
+    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/index.js                                         # [unix]
+    - test -f ${PREFIX}/share/jupyter/lab/extensions/ipycanvas-{{ version }}.tgz                              # [unix]
+    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\extension.js (exit 0) else (exit 1)         # [win]
+    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\index.js (exit 0) else (exit 1)             # [win]
+    - if exist %PREFIX%\\share\\jupyter\\lab\\extensions\\ipycanvas-{{ version }}.tgz (exit 0) else (exit 1)  # [win]
 
 about:
   home: http://github.com/martinRenou/ipycanvas
