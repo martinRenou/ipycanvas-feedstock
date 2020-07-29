@@ -5,7 +5,7 @@ Home: http://github.com/martinRenou/ipycanvas
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: Interactive widgets library exposing the browser's Canvas API
 
