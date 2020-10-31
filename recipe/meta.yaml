@@ -1,5 +1,6 @@
 {% set name = "ipycanvas" %}
 {% set version = "0.6.0" %}
+{% set jsversion = "0.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -29,12 +30,12 @@ test:
   imports:
     - ipycanvas
   commands:
-    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/extension.js                                     # [unix]
-    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/index.js                                         # [unix]
-    - test -f ${PREFIX}/share/jupyter/lab/extensions/ipycanvas-{{ version }}.tgz                              # [unix]
-    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\extension.js (exit 0) else (exit 1)         # [win]
-    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\index.js (exit 0) else (exit 1)             # [win]
-    - if exist %PREFIX%\\share\\jupyter\\lab\\extensions\\ipycanvas-{{ version }}.tgz (exit 0) else (exit 1)  # [win]
+    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/extension.js                                       # [unix]
+    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/index.js                                           # [unix]
+    - test -f ${PREFIX}/share/jupyter/lab/extensions/ipycanvas-{{ jsversion }}.tgz                              # [unix]
+    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\extension.js (exit 0) else (exit 1)           # [win]
+    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\index.js (exit 0) else (exit 1)               # [win]
+    - if exist %PREFIX%\\share\\jupyter\\lab\\extensions\\ipycanvas-{{ jsversion }}.tgz (exit 0) else (exit 1)  # [win]
 
 about:
   home: http://github.com/martinRenou/ipycanvas
