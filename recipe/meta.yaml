@@ -1,5 +1,6 @@
 {% set name = "ipycanvas" %}
-{% set version = "0.5.1" %}
+{% set version = "0.6.0" %}
+{% set jsversion = "0.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d8bb9e416539d4037ca55d7722a27deeda7edc89a30adeb01cfba88d4532743c
+  sha256: a6d49cd709a8749d7a653130747189ae53312884ef3f5ebe14d024673f24785a
 
 build:
   noarch: python
@@ -16,25 +17,25 @@ build:
 
 requirements:
   host:
-    - python
+    - python >=3.6
     - pip
     - nodejs
   run:
     - ipywidgets >=7.5.0
     - numpy
     - pillow >=6.0
-    - python
+    - python >=3.6
 
 test:
   imports:
     - ipycanvas
   commands:
-    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/extension.js                                     # [unix]
-    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/index.js                                         # [unix]
-    - test -f ${PREFIX}/share/jupyter/lab/extensions/ipycanvas-{{ version }}.tgz                              # [unix]
-    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\extension.js (exit 0) else (exit 1)         # [win]
-    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\index.js (exit 0) else (exit 1)             # [win]
-    - if exist %PREFIX%\\share\\jupyter\\lab\\extensions\\ipycanvas-{{ version }}.tgz (exit 0) else (exit 1)  # [win]
+    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/extension.js                                       # [unix]
+    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/index.js                                           # [unix]
+    - test -f ${PREFIX}/share/jupyter/lab/extensions/ipycanvas-{{ jsversion }}.tgz                              # [unix]
+    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\extension.js (exit 0) else (exit 1)           # [win]
+    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\index.js (exit 0) else (exit 1)               # [win]
+    - if exist %PREFIX%\\share\\jupyter\\lab\\extensions\\ipycanvas-{{ jsversion }}.tgz (exit 0) else (exit 1)  # [win]
 
 about:
   home: http://github.com/martinRenou/ipycanvas
