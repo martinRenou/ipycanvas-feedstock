@@ -1,6 +1,6 @@
 {% set name = "ipycanvas" %}
-{% set version = "0.6.0" %}
-{% set jsversion = "0.6.1" %}
+{% set version = "0.7.0" %}
+{% set jsversion = "0.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a6d49cd709a8749d7a653130747189ae53312884ef3f5ebe14d024673f24785a
+  sha256: 6289090edbfccbed4a3a591c72cdad2c5ec00aed6ad1faf12d6ce295599fa200
 
 build:
   noarch: python
@@ -25,6 +25,7 @@ requirements:
     - numpy
     - pillow >=6.0
     - python >=3.6
+    - orjson
 
 test:
   imports:
