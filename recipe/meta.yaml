@@ -1,14 +1,14 @@
 {% set name = "ipycanvas" %}
-{% set version = "0.8.0" %}
-{% set jsversion = "0.8.0" %}
+{% set version = "0.8.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
+  url: https://pypi.io/packages/source/i/ipycanvas/ipycanvas-0.8.1.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: bd74ee91c0453c835a7a1480869bacf8db45d261eaa168abd0a374ad9e32b90d
+  sha256: b39f2227e806c859f9d702a8b0281135aed99ef496a2090ef795445199276290
 
 build:
   noarch: python
@@ -20,8 +20,10 @@ requirements:
     - python >=3.6
     - pip
     - nodejs
+    - jupyter-packaging
+    - jupyterlab >=3,<4
   run:
-    - ipywidgets >=7.5.0
+    - ipywidgets >=7.6.0
     - numpy
     - pillow >=6.0
     - python >=3.6
@@ -33,10 +35,10 @@ test:
   commands:
     - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/extension.js                                       # [unix]
     - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/index.js                                           # [unix]
-    - test -f ${PREFIX}/share/jupyter/lab/extensions/ipycanvas-{{ jsversion }}.tgz                              # [unix]
+    - test -f ${PREFIX}/share/jupyter/labextensions/ipycanvas/package.json                                      # [unix]
     - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\extension.js (exit 0) else (exit 1)           # [win]
     - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\index.js (exit 0) else (exit 1)               # [win]
-    - if exist %PREFIX%\\share\\jupyter\\lab\\extensions\\ipycanvas-{{ jsversion }}.tgz (exit 0) else (exit 1)  # [win]
+    - if exist %PREFIX%\\share\\jupyter\\labextensions\\ipycanvas\\package.json (exit 0) else (exit 1)          # [win]
 
 about:
   home: http://github.com/martinRenou/ipycanvas
@@ -44,7 +46,7 @@ about:
   license_family: BSD
   license_file: LICENSE.txt
   summary: Interactive widgets library exposing the browser's Canvas API
-
+  doc_url: https://ipycanvas.readthedocs.io
   dev_url: http://github.com/martinRenou/ipycanvas
 
 extra:
