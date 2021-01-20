@@ -1,14 +1,13 @@
 {% set name = "ipycanvas" %}
-{% set version = "0.8.1" %}
+{% set version = "0.8.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/i/ipycanvas/ipycanvas-0.8.1.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: b39f2227e806c859f9d702a8b0281135aed99ef496a2090ef795445199276290
+  sha256: 45ca524d90d158a5e884e146a10885f853d5a352e547e7b1eb5329230c9eff02
 
 build:
   noarch: python
@@ -19,9 +18,7 @@ requirements:
   host:
     - python >=3.6
     - pip
-    - nodejs
     - jupyter-packaging
-    - jupyterlab >=3,<4
   run:
     - ipywidgets >=7.6.0
     - numpy
@@ -33,12 +30,12 @@ test:
   imports:
     - ipycanvas
   commands:
-    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/extension.js                                       # [unix]
-    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/index.js                                           # [unix]
-    - test -f ${PREFIX}/share/jupyter/labextensions/ipycanvas/package.json                                      # [unix]
-    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\extension.js (exit 0) else (exit 1)           # [win]
-    - if exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\index.js (exit 0) else (exit 1)               # [win]
-    - if exist %PREFIX%\\share\\jupyter\\labextensions\\ipycanvas\\package.json (exit 0) else (exit 1)          # [win]
+    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/extension.js                             # [unix]
+    - test -f ${PREFIX}/share/jupyter/nbextensions/ipycanvas/index.js                                 # [unix]
+    - test -f ${PREFIX}/share/jupyter/labextensions/ipycanvas/package.json                            # [unix]
+    - if not exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\extension.js (exit 1)           # [win]
+    - if not exist %PREFIX%\\share\\jupyter\\nbextensions\\ipycanvas\\index.js (exit 1)               # [win]
+    - if not exist %PREFIX%\\share\\jupyter\\labextensions\\ipycanvas\\package.json (exit 1)          # [win]
 
 about:
   home: http://github.com/martinRenou/ipycanvas
